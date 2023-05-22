@@ -1,11 +1,17 @@
 const express = require('express');
 const LogginControll = require('../controller/LoginController');
-const router = express.Router();
+const CheckLogin = require('../middleware/LoginMiddleware');
+const loginrouter = express.Router();
 
-router.get('/login', (req, res) => {
-  res.send('¡Hola desde la página de inicio!');
+loginrouter.post('/login', LogginControll);
+
+loginrouter.get('/menu', CheckLogin, (req, res) => {
+    const { user,clase } = req.session;
+    res.render('menu', {user: user,clase:clase});
 });
 
-router.post('/login', LogginControll);
+loginrouter.get ('*', (req ,res) => {
+  res.send('error page not found')
+});
 
-module.exports = router;
+module.exports = loginrouter;

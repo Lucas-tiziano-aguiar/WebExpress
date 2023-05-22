@@ -17,42 +17,30 @@
       </nav>
     </header>
     <aside>
-        <div class="grid-container">
-            <div class="column-4">
-        <div class="header z-index">
-                <div>
-            <p class="textoHeader">
-              <br>
-              <p id="dynamic-content">
-                  <%= content %>
-              </p>
-              <br>
+      <div class="grid-container">
+          <div class="column-4">
+      <div class="header z-index">
+        <div>
+          <p class="textoHeader">
+            <br>
+            <p id="dynamic-content">
+                <%= user.nombre %>
+                <%= user.apellido %>
+                <%= user.mail %>
             </p>
-                        
+            <br>
+          </p>
+        </div>
+      </div>
+          <div class="footer">
+            <form action="php/logout.php" method="post">
+                <input type="submit" value="Logout">
+            </form>
           </div>
-        </div>
-            <div class="main">
-                <p class="textoPrimario">
-                    <br>
-                    Clases:
-                    <br>
-                </p>
-                <button class="dropdown-btn"></button>
-                    <ul class="dropdown-menu">
-                    </ul>
-            </div>    
-            <div class="footer">
-              <form action="php/logout.php" method="post">
-                  <input type="submit" value="Logout">
-              </form>
-            </div>
-            <div class="column-8">
-                
-            </div>
-    
-        </div>
-            
-      </aside>
+          <div class="column-8">
+          </div>
+      </div>
+    </aside>
     <main>
       <table class="table">
         <thead>
@@ -68,7 +56,7 @@
           </tr>
         </thead>
         <tbody>
-
+          
         </tbody>
       </table>
       <form method="post">
