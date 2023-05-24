@@ -24,7 +24,7 @@ const loginController = (req, res) => {
         return;
       }
 
-      req.session.clases = clases;
+      req.session.clase = clases;
       console.log(req.session);
       res.redirect('/menu');
     });

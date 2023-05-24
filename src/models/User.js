@@ -3,8 +3,8 @@ const mysql = require('mysql');
 // Configuración de la conexión a la base de datos
 const connection = mysql.createConnection({
   host: '127.0.0.1',
-  user: 'newuser',
-  password: 'password',
+  user: 'root',
+  password: '',
   port: 3306,
   database: 'registrostec11'
 });
@@ -14,8 +14,7 @@ const User = (id, password, callback) => {
     SELECT usuarios.*, passwords.password
     FROM usuarios
     INNER JOIN passwords ON usuarios.id = passwords.idUsuario
-    WHERE usuarios.id = ?;
-  `;
+    WHERE usuarios.id = ?;`;
   connection.query(query, [id], (error, results) => {
     if (error) {
       console.error('Error executing the query:', error);
