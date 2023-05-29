@@ -1,6 +1,6 @@
 const { DataTypes, Sequelize } = require("sequelize");
 
-const sequelize = new Sequelize('registrostec11', 'newuser', 'password', {
+const sequelize = new Sequelize('registrostec11', 'root', '', {
     host: 'localhost',
     dialect: 'mysql',
   });
@@ -36,7 +36,7 @@ const sequelize = new Sequelize('registrostec11', 'newuser', 'password', {
   });
   
   // Definición del modelo Nota
-  const Nota = sequelize.define('Nota', {
+  const NotaAula = sequelize.define('NotaAula', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -97,3 +97,9 @@ const sequelize = new Sequelize('registrostec11', 'newuser', 'password', {
       console.error('Error al sincronizar las tablas:', error);
     });
   
+
+module.exports =
+  Alumno,
+  AlumnosMateriasAula,
+  AlumnosMateriasTaller,
+  NotaTaller;
