@@ -3,8 +3,8 @@ const mysql = require('mysql');
 // Configuración de la conexión a la base de datos
 const connection = mysql.createConnection({
   host: '127.0.0.1',
-  user: 'root',
-  password: '',
+  user: 'newuser',
+  password: 'password',
   port: 3306,
   database: 'registrostec11'
 });
