@@ -16,14 +16,8 @@ const loginController = (req, res) => {
 
     req.session.user = usuario;
     req.session.isLoggedIn = true;
-
     // Obtener las clases del usuario
     User.listarClases(usuario.id, (error, clases) => {
-      if (error) {
-        res.status(500).json({ error: 'Error al obtener las clases del usuario' });
-        return;
-      }
-
       req.session.clase = clases;
       console.log(req.session);
       res.redirect('/menu');

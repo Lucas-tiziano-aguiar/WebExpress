@@ -13,7 +13,7 @@ const User = (id, password, callback) => {
   const query = `
     SELECT usuarios.*, passwords.password
     FROM usuarios
-    INNER JOIN passwords ON usuarios.id = passwords.idUsuario
+    INNER JOIN passwords ON usuarios.id = passwords.usuario_id
     WHERE usuarios.id = ?;`;
   connection.query(query, [id], (error, results) => {
     if (error) {
@@ -39,9 +39,8 @@ const User = (id, password, callback) => {
 const listarClases = (userId, callback) => {
   const query = `
     SELECT *
-    FROM espacios
-    WHERE profesor_id = ?
-  `;
+    FROM aula
+    WHERE id_prof = ?`;
   connection.query(query, userId, (error, results) => {
     if (error) {
       console.error('Error al obtener las clases del usuario:', error);
