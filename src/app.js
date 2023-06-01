@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const session = require('express-session');
 const path = require('path');
+const MenuRouter = require('./router/MenuRouter');
 // Configuraciones adicionales de la aplicación
 app.use(
   session({
@@ -29,7 +30,7 @@ app.get ('/', (req,res) => {
 app.use('/',loginRouter);
 const PORT = 555;
 // Iniciar el servidor
-
+app.use('/menu',MenuRouter);
 app.listen(PORT, () => {
   console.log('Servidor iniciado en el puerto '+PORT);
 });
