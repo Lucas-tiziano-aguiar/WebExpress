@@ -1,0 +1,98 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="estilostablas.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  </head>
+  <body>
+    <header>
+      <nav class="navbar bg-body-tertiary top">
+        <div class="container-fluid">
+          <img class="imagen" src="imagenes/malvinas.png" alt="Escudo de la escuela tecnica nro 11">
+          <form class="d-flex">
+          </form>
+        </div>
+      </nav>
+    </header>
+    <aside>
+      <div class="grid-container">
+          <div class="column-4">
+      <div class="header z-index">
+        <div>
+          <p class="textoHeader">
+            <br>
+            <p id="dynamic-content">
+                <%= user.nombre %>
+                <%= user.apellido %>
+                <%= user.mail %>
+            </p>
+            <br>
+          </p>
+          <% for (let i = 0; i < clase.length; i++) { %>
+              <ul class="">
+                <li><%= clase[i].id %></li>
+                <li><%= clase[i].grado_division %></li>
+                <li><%= clase[i].materia %></li>
+                <li><%= clase[i].grupo %></li>
+                <li><a href="/menu/list/<%= clase[i].id %>">listar</a></li>
+              </ul>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    </aside>
+    <% for (let i = 0; i < curso.length; i++) { %>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row"><%= curso[i].dni %></th>
+            <th><%= curso[i].nombre %></th>
+            <th><%= curso[i].apellido %></th>
+            <td>
+              <input type="text" id="input1_<%= curso[i].id %>" placeholder="Valor 1">
+              <input type="text" id="input2_<%= curso[i].id %>" placeholder="Valor 2">
+              <input type="text" id="input3_<%= curso[i].id %>" placeholder="Valor 3">
+              <button onclick="enviarValores('<%= i %>')">Guardar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <% } %>
+    <script>
+      function enviarValores(i) {
+        const inputValor1 = document.getElementById('input1_' + i).value;
+        const inputValor2 = document.getElementById('input2_' + i).value;
+        const inputValor3 = document.getElementById('input3_' + i).value;
+        
+        const data = {
+          valor1: inputValor1,
+          valor2: inputValor2,
+          valor3: inputValor3
+        };
+        console.log(data);
+        console.log('funciona');
+        
+        fetch('/menu/guardarNotas', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+          .then(response => {
+            if (response.ok) {
+              console.log('Valores de notas guardados correctamente');
+            } else {
+              throw new Error('Error al guardar los valores de notas');
+            }
+          })
+          .catch(error => {
+            console.error('Error al guardar los valores de notas:', error);
+          });
+      }
+    </script>    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  </body>
+</html>
