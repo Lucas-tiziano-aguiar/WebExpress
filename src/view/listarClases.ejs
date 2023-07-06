@@ -1,0 +1,15 @@
+<% if (clase.length > 0) { %>   
+    <% for (let i = 0; i < clase.length; i++) { %>
+        <div class="card" style="width: 18rem; display: flex;">
+          <div class="card-body">
+            <h5 class="card-title"><%= clase[i].grado_division %></h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary"><%= clase[i].id %></h6>
+            <p class="card-text"><%= clase[i].materia %>||<%= clase[i].grupo %></p>
+            <a href="/menu/Notas/<%= clase[i].id %>" class="card-link">ingresar notas</a>
+            <a href="/menu/Notas/<%= clase[i].id %>"class="card-link">ver alumnos</a>
+          </div>
+        </div>
+    <% } %>
+  <% } else { %>
+    no tienes clases asociadas  
+<% } %>

@@ -1,4 +1,3 @@
-console.clear();
 const express = require('express');
 const loginRouter = require('./router/LoginRouter');
 const bodyParser = require('body-parser');

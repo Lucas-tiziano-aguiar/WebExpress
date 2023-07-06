@@ -3,8 +3,8 @@ const mysql = require('mysql');
 // Configuración de la conexión a la base de datos
 const connection = mysql.createConnection({
   host: '127.0.0.1',
-  user: 'root',
-  password: '',
+  user: 'Admin',
+  password: 'password',
   port: 3306,
   database: 'registrostec11'
 });
@@ -13,7 +13,7 @@ const User = (id, password, callback) => {
   const query = `
     SELECT usuarios.*, passwords.password
     FROM usuarios
-    INNER JOIN passwords ON usuarios.id = passwords.usuario_id
+    INNER JOIN passwords ON usuarios.id = passwords.id_usuario
     WHERE usuarios.id = ?;`;
   connection.query(query, [id], (error, results) => {
     if (error) {
@@ -39,19 +39,17 @@ const User = (id, password, callback) => {
 const listarClases = (userId, callback) => {
   const query = `
     SELECT *
-    FROM aula
-    WHERE id_prof = ?`;
-  connection.query(query, userId, (error, results) => {
+    FROM clases
+    WHERE id_profe = ? or id_prece = ? `;
+  connection.query(query, [userId,userId], (error, results) => {
     if (error) {
       console.error('Error al obtener las clases del usuario:', error);
       callback(error, null);
       return;
     }
-
     callback(null, results);
   });
 };
-
 module.exports = {
   User,
   listarClases
